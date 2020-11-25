@@ -1,0 +1,18 @@
+lista de veículos, selecionados entre os disponíveis                                                | mover aquele metodo grandao pro lugar certo e implementar as validacoes 
+Deve ser possível, também, listar todas as locações que já ocorreram                                | basicamente adicionar os carros locados em locacoes e fazer um metodo que devolve o array de locacoes, alem disso criar um endpoint que chama o metodo
+Devolver carro pela placa                                                                           | tem q adicionar um endpoint em LocadoraController
+O sistema para o calculo de desconto e seguro estao feitos porem os calculos em si estao uma merda  |
+
+99% dessas funcoes consistem em percorrer uma lista adcionar ou remover algo de uma lista e bem tranquilo
+
+A unica parte que deu problema foi a implementacao do H2, nao funcionou nem fodendo
+
+PS: a pior parte vai ser vazer os testes, demora e e chato
+PS2: pau no cu do spring boot
+
+
+•	Modelar um conjunto de classes para implementar o “backend” seguindo os princípios SOLID e da arquitetura CLEAN //ok
+•	Explorar padrões de projeto para se adequar aos princípios SOLID                                                //ok        
+•	Implementar drivers de teste unitário                                                                           //chato
+•	Explorar ferramentas de desenvolvimento colaborativos tais como Git/GitHub e Maven                              //tem q criar o repo no git a partir dessa versao inicial
+•	Executar e testar tanto o “frontend” como o “backend” desenvolvidos                                             //descobriremos

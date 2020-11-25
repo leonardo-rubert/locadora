@@ -1,0 +1,10 @@
+com\grupo12\DataLocal.class
+com\grupo12\Interface\Persistencia\Locacoes\LocacoesDB.class
+com\grupo12\Entidades\Servicos\Servicos.class
+com\grupo12\Interface\DTO\FiltroDTO.class
+com\grupo12\Interface\LocadoraController.class
+com\grupo12\Interface\DTO\CarroCustoDTO.class
+com\grupo12\Entidades\Repositorio\Repositorio.class
+com\grupo12\Entidades\Dominio\Veiculo\Carro.class
+com\grupo12\CasosDeUso\ControleDeLocacao.class
+com\grupo12\Entidades\Repositorio\Frota.class
