@@ -11,8 +11,7 @@ import com.grupo12.Interface.DTO.FiltroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 @Component
-//usa os metodos de servicos para validar locacoes remover, remover e listar carros do banco de dados
-//faz acoes
+
 public class ControleDeLocacao {
   public ControleDeLocacao() {
   }
