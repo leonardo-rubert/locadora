@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import org.springframework.stereotype.Repository;
 @Repository
-//basicamente as operacoes do banco de dados
 public interface Repositorio<E, K> {
     void carrega();
     void persiste();

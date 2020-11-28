@@ -1,7 +1,6 @@
 package com.grupo12.Interface.DTO;
 
 import com.grupo12.DataLocal;
-//classe que recebe e envia informacoes do frontend usadas nas pesquisas 
 public class FiltroDTO {
     private DataLocal inicioLocacao = new DataLocal();
     private DataLocal fimLocacao = new DataLocal();

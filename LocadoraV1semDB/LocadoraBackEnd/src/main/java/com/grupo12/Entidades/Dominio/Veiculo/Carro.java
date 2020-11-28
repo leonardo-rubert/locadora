@@ -1,6 +1,5 @@
 package com.grupo12.Entidades.Dominio.Veiculo;
 
-//um carro
 public class Carro {
     private String placa;
     private String marca;

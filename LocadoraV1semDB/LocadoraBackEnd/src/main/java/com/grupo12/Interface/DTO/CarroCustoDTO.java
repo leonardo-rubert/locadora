@@ -1,7 +1,6 @@
 package com.grupo12.Interface.DTO;
 
 import com.grupo12.DataLocal;
-//classe que recebe e envia informacoes do frontend usadas no calculo da locacao
 public class CarroCustoDTO {
     private DataLocal inicioLocacao;
     private DataLocal fimLocacao;
