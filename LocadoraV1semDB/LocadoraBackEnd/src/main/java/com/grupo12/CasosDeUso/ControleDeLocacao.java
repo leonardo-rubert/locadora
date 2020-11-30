@@ -54,7 +54,6 @@ public class ControleDeLocacao {
     return historicoDB.todos();
   }
 
-  //nao pode locar um carro antes da data atual
   public boolean validaDataAtual(DataLocal inicio) throws ParseException {
     SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
     DataLocal atual = new DataLocal();
@@ -62,14 +61,13 @@ public class ControleDeLocacao {
     Date d2 = sdformat.parse(inicio.getAno()+"-"+inicio.getMes()+"-"+inicio.getDia());
     if(d1.compareTo(d2) > 0) {
       return false;
-   } else if(d1.compareTo(d2) < 0) {
+    } else if (d1.compareTo(d2) < 0) {
       return true;
-   } else {
-    return true;
-   }
+    } else {
+      return true;
+    }
   }
 
-  //nao pode locar um carro com 
   public boolean validaDataPeriodo(DataLocal inicio, DataLocal fim) throws ParseException {
     SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
     Date d1 = sdformat.parse(fim.getAno()+"-"+fim.getMes()+"-"+fim.getDia());
@@ -83,6 +81,21 @@ public class ControleDeLocacao {
    }
   }
 
+  public boolean validaData(FiltroDTO filtro){
+    try {
+      if (!(validaDataPeriodo(filtro.getInicioLocacao(),filtro.getFimLocacao())
+      && validaDataAtual(filtro.getInicioLocacao()))) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (ParseException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+	return false;
+  }
+
   public List<Carro> FiltroDisponiveis(FiltroDTO filtro){
     List<Carro> disponiveis = frotaDB.todos().stream()
       .filter(c->c.isArcondicionado() == filtro.isArcondicionado())
@@ -93,14 +106,9 @@ public class ControleDeLocacao {
   }
 
   public List<CarroCustoDTO> ListaCarrosDisponiveis(FiltroDTO filtro) {
-    try {
-      if (!(validaDataPeriodo(filtro.getInicioLocacao(),filtro.getFimLocacao())
-      && validaDataAtual(filtro.getInicioLocacao()))) {
-        return new ArrayList<>();
-      }
-    } catch (ParseException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+    
+    if (validaData(filtro)) {
+      return new ArrayList<>();
     }
 
     List<Carro> disponiveis = FiltroDisponiveis(filtro);
@@ -161,6 +169,4 @@ public class ControleDeLocacao {
       c.setDevolvido();
     }
   }
-  
-
 }
