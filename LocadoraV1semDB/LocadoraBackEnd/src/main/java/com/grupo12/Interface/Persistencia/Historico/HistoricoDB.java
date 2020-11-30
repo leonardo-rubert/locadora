@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import com.grupo12.Entidades.Dominio.Locacao.Locacao;
 import com.grupo12.Entidades.Repositorio.Historico;
@@ -48,6 +49,13 @@ public class HistoricoDB implements Historico {
     @Override
     public Collection<Locacao> pesquisa(Predicate<Locacao> pred) {
         return null;
+    }
+
+    public Collection<Locacao> pesquisa(String placa){
+        return locacoes
+        .stream()
+        .filter(v->v.getPlaca().equals(placa))
+        .collect(Collectors.toList());
     }
 
     @Override

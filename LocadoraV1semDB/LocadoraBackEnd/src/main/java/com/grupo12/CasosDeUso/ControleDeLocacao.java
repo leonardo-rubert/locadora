@@ -1,10 +1,14 @@
 package com.grupo12.CasosDeUso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.grupo12.DataLocal;
 import com.grupo12.Entidades.Dominio.Locacao.Locacao;
 import com.grupo12.Entidades.Dominio.Veiculo.Carro;
 import com.grupo12.Entidades.Servicos.Servicos;
@@ -23,6 +27,7 @@ public class ControleDeLocacao {
   private LocadosDB locadosDB;
   private HistoricoDB historicoDB;
   private Servicos servicos;
+
   @Autowired
   public ControleDeLocacao(Servicos servicos) {
     frotaDB = new FrotaDB();
@@ -48,6 +53,10 @@ public class ControleDeLocacao {
     return historicoDB.todos();
   }
 
+  public boolean validaData(DataLocal inicio) throws ParseException {
+    return true;
+  }
+
   public List<Carro> FiltroDisponiveis(FiltroDTO filtro){
     List<Carro> disponiveis = frotaDB.todos().stream()
       .filter(c->c.isArcondicionado() == filtro.isArcondicionado())
@@ -57,8 +66,15 @@ public class ControleDeLocacao {
       return disponiveis;
   }
 
-  //da pra melhorar
   public List<CarroCustoDTO> ListaCarrosDisponiveis(FiltroDTO filtro) {
+    try {
+      if (validaData(filtro.getInicioLocacao())) {
+        return new ArrayList<>();
+      }
+    } catch (ParseException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     List<Carro> disponiveis = FiltroDisponiveis(filtro);
     List<CarroCustoDTO> informacoes = new ArrayList<>(disponiveis.size());
     disponiveis.forEach(c->{
@@ -113,7 +129,9 @@ public class ControleDeLocacao {
   }
 
   public void marcaDevolvido(String placa) {
-    historicoDB.recupera(placa).setDevolvido();
+    for (Locacao c : historicoDB.pesquisa(placa) ) {
+      c.setDevolvido();
+    }
   }
 
 }
