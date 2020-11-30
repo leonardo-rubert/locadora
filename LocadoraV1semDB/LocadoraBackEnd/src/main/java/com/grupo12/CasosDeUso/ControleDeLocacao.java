@@ -54,8 +54,33 @@ public class ControleDeLocacao {
     return historicoDB.todos();
   }
 
-  public boolean validaData(DataLocal inicio) throws ParseException {
+  //nao pode locar um carro antes da data atual
+  public boolean validaDataAtual(DataLocal inicio) throws ParseException {
+    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+    DataLocal atual = new DataLocal();
+    Date d1 = sdformat.parse(atual.getAno()+"-"+atual.getMes()+"-"+atual.getDia());
+    Date d2 = sdformat.parse(inicio.getAno()+"-"+inicio.getMes()+"-"+inicio.getDia());
+    if(d1.compareTo(d2) > 0) {
+      return false;
+   } else if(d1.compareTo(d2) < 0) {
+      return true;
+   } else {
     return true;
+   }
+  }
+
+  //nao pode locar um carro com 
+  public boolean validaDataPeriodo(DataLocal inicio, DataLocal fim) throws ParseException {
+    SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+    Date d1 = sdformat.parse(fim.getAno()+"-"+fim.getMes()+"-"+fim.getDia());
+    Date d2 = sdformat.parse(inicio.getAno()+"-"+inicio.getMes()+"-"+inicio.getDia());
+    if(d1.compareTo(d2) > 0) {
+      return true;
+   } else if(d1.compareTo(d2) < 0) {
+      return false;
+   } else {
+    return false;
+   }
   }
 
   public List<Carro> FiltroDisponiveis(FiltroDTO filtro){
@@ -69,13 +94,15 @@ public class ControleDeLocacao {
 
   public List<CarroCustoDTO> ListaCarrosDisponiveis(FiltroDTO filtro) {
     try {
-      if (validaData(filtro.getInicioLocacao())) {
+      if (!(validaDataPeriodo(filtro.getInicioLocacao(),filtro.getFimLocacao())
+      && validaDataAtual(filtro.getInicioLocacao()))) {
         return new ArrayList<>();
       }
     } catch (ParseException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+
     List<Carro> disponiveis = FiltroDisponiveis(filtro);
     List<CarroCustoDTO> informacoes = new ArrayList<>(disponiveis.size());
     disponiveis.forEach(c->{
