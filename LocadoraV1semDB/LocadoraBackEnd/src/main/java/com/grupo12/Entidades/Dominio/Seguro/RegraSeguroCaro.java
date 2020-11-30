@@ -6,13 +6,13 @@ public class RegraSeguroCaro implements RegraSeguro {
     public double calcular(boolean arcondicionado ,boolean direcao ,boolean cambio) {
         double total = 200;
         if (arcondicionado) {
-            total+=200;
+            total+=100;
         }
         if (direcao) {
-            total+=200;
+            total+=150;
         }
         if (cambio){
-            total+=200;
+            total+=150;
         }
         return total;
     }

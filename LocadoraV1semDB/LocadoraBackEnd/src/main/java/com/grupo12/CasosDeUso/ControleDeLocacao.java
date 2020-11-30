@@ -17,6 +17,7 @@ import com.grupo12.Interface.Persistencia.Locados.LocadosDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class ControleDeLocacao {
   private FrotaDB frotaDB;
@@ -57,7 +58,6 @@ public class ControleDeLocacao {
       return disponiveis;
   }
 
-  //da pra melhorar
   public List<CarroCustoDTO> ListaCarrosDisponiveis(FiltroDTO filtro) {
     List<Carro> disponiveis = FiltroDisponiveis(filtro);
     List<CarroCustoDTO> informacoes = new ArrayList<>(disponiveis.size());
@@ -115,5 +115,6 @@ public class ControleDeLocacao {
   public void marcaDevolvido(String placa) {
     historicoDB.recupera(placa).setDevolvido();
   }
+  
 
 }

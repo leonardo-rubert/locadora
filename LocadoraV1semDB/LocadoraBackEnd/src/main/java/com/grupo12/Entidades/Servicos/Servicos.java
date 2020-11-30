@@ -1,6 +1,6 @@
 package com.grupo12.Entidades.Servicos;
 
-import com.grupo12.DataLocal;
+//import com.grupo12.DataLocal;
 import com.grupo12.Entidades.Descontos.FactoryDesconto;
 import com.grupo12.Entidades.Dominio.Locacao.Locacao;
 import com.grupo12.Entidades.Dominio.Seguro.RegraSeguro;
@@ -15,8 +15,7 @@ public class Servicos {
   private FactoryDesconto factoryDesconto;
   private FrotaDB frotaDB;
   @Autowired
-  public Servicos(RegraSeguro regraSeguro, FactoryDesconto factoryDesconto,
-  DataLocal inicio,DataLocal fim, FrotaDB frotaDB) {
+  public Servicos(RegraSeguro regraSeguro, FactoryDesconto factoryDesconto,  FrotaDB frotaDB) {
       this.regraSeguro = regraSeguro;
       this.factoryDesconto = factoryDesconto;
       this.frotaDB = frotaDB;
@@ -27,18 +26,20 @@ public class Servicos {
                                                 locacao.getFimLocacao()).disconto();
   }
 
-  public double calculaDiaria(Locacao locacao){
-    return calculaDias(locacao) * 100;
-  }
-  public double calculaSeguro(Locacao locacao){
-    return (locacao.getFimLocacao().getDia() - locacao.getInicioLocacao().getDia()) 
-            * regraSeguro.calcular(locacao.isArcondicionado(),locacao.isDirecao(),locacao.isCambio());
-  }
-  public double calculaTotal(Locacao locacao){
-    return calculaDiaria(locacao) + calculaSeguro(locacao) - calculaDesconto(locacao);
+  public  double calculaDiaria(Locacao locacao){
+    return calculaDias(locacao) * 50;
   }
 
-  public double calculaDias(Locacao locacao){
+  public double calculaSeguro(Locacao locacao) {
+    return (locacao.getFimLocacao().getDia() - locacao.getInicioLocacao().getDia())
+    * regraSeguro.calcular(locacao.isArcondicionado(), locacao.isDirecao(), locacao.isCambio());
+  }
+
+  public double calculaTotal(Locacao locacao) {
+    return calculaDiaria(locacao) + calculaSeguro(locacao) * calculaDesconto(locacao);
+  }
+
+  public  double calculaDias(Locacao locacao) {
 	return ( Math.abs(locacao.getInicioLocacao().getDia() - locacao.getFimLocacao().getDia())) +
          ((Math.abs(locacao.getInicioLocacao().getMes() - locacao.getFimLocacao().getMes())) * 30) +
          ((Math.abs(locacao.getInicioLocacao().getAno() - locacao.getFimLocacao().getAno())) * 365);

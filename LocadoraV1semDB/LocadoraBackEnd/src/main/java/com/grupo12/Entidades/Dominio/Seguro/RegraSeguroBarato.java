@@ -1,6 +1,4 @@
 package com.grupo12.Entidades.Dominio.Seguro;
-
-
 public class RegraSeguroBarato implements RegraSeguro {
 
     @Override

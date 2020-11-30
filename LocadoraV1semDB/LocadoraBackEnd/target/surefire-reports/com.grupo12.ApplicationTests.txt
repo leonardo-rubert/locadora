@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: com.grupo12.ApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.86 s <<< FAILURE! - in com.grupo12.ApplicationTests
+calcTeste  Time elapsed: 0.56 s  <<< ERROR!
+java.lang.Error: 
+Unresolved compilation problem: 
+	Cannot make a static reference to the non-static method calculaDias(Locacao) from the type Servicos
+
+	at com.grupo12.ApplicationTests.calcTeste(ApplicationTests.java:48)
+
