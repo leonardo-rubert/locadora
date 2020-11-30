@@ -1,16 +1,19 @@
 package com.grupo12.Entidades.Descontos;
 
-import com.grupo12.DataLocal;
+import com.grupo12.Entidades.Dominio.Locacao.Locacao;
 
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class FactoryDesconto {
-    public RegraDesconto getRegraVerificacao(DataLocal inicio, DataLocal fim){
-        if (inicio.getMes() == 12 || inicio.getMes() == 1 || inicio.getMes() == 2){
+    public RegraDesconto getRegraVerificacao(Locacao locacao) {
+        if (locacao.getInicioLocacao().getMes() == 12 
+        || locacao.getInicioLocacao().getMes() == 1 
+        || locacao.getInicioLocacao().getMes() == 2)
+        {
             return new DescontoEspecial();
-        }else{
+        } else {
             return new DescontoNormal();
         }
     }

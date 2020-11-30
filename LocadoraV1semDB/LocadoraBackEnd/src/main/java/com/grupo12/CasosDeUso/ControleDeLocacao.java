@@ -149,14 +149,14 @@ public class ControleDeLocacao {
 
   public boolean devolveCarro(String placa) {
     boolean res = true;
-     if(locadosDB.existente(placa)) {
-    frotaDB.cadastra(locadosDB.recupera(placa));
-    marcaDevolvido(placa);
-    locadosDB.remove(placa);
+    if(locadosDB.existente(placa)) {
+      frotaDB.cadastra(locadosDB.recupera(placa));
+      marcaDevolvido(placa);
+      locadosDB.remove(placa);
     } else {
-        res = false;
-      }
-      return res;
+      res = false;
+    }
+    return res;
   }
 
   public void marcaDevolvido(String placa) {

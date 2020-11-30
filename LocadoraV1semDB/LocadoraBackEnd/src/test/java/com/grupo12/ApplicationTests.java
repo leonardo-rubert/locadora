@@ -19,30 +19,8 @@ class ApplicationTests {
 	private Servicos ser = null;
 
 	@BeforeEach
-	void setUp(){ser = new Servicos(null, null, null);
+	void setUp(){ser = new Servicos(null, null);
 	}
-
-	
-	@Test
-	void descontoTeste() {
-		FactoryDesconto d = new FactoryDesconto();
-		DataLocal a = new DataLocal();
-		DataLocal b = new DataLocal();
-		a.setMes(12);
-		b.setMes(1);
-		Assertions.assertEquals(0.5, d.getRegraVerificacao(a, b).disconto());
-	}
-
-	@Test
-	void descontoNormalTeste() {
-		FactoryDesconto d = new FactoryDesconto();
-		DataLocal a = new DataLocal();
-		DataLocal b = new DataLocal();
-		a.setMes(11);
-		b.setMes(1);
-		Assertions.assertEquals(0.2, d.getRegraVerificacao(a, b).disconto());
-	}
-
 	@Test
 	void calcDiaTeste() {
 		DataLocal c = new DataLocal();
