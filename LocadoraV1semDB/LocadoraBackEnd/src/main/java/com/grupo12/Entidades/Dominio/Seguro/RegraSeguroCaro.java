@@ -1,17 +1,19 @@
 package com.grupo12.Entidades.Dominio.Seguro;
 
+import com.grupo12.Entidades.Dominio.Locacao.Locacao;
+
 public class RegraSeguroCaro implements RegraSeguro {
 
     @Override
-    public double calcular(boolean arcondicionado ,boolean direcao ,boolean cambio) {
+    public double calcular(Locacao locacao) {
         double total = 200;
-        if (arcondicionado) {
+        if (locacao.isArcondicionado()) {
             total+=100;
         }
-        if (direcao) {
+        if (locacao.isDirecao()) {
             total+=150;
         }
-        if (cambio){
+        if (locacao.isCambio()){
             total+=150;
         }
         return total;

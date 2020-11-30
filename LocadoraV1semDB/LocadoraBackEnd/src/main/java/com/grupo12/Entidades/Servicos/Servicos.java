@@ -1,6 +1,5 @@
 package com.grupo12.Entidades.Servicos;
 
-//import com.grupo12.DataLocal;
 import com.grupo12.Entidades.Descontos.FactoryDesconto;
 import com.grupo12.Entidades.Dominio.Locacao.Locacao;
 import com.grupo12.Entidades.Dominio.Seguro.RegraSeguro;
@@ -31,12 +30,12 @@ public class Servicos {
   }
 
   public double calculaSeguro(Locacao locacao) {
-    return (locacao.getFimLocacao().getDia() - locacao.getInicioLocacao().getDia())
-    * regraSeguro.calcular(locacao.isArcondicionado(), locacao.isDirecao(), locacao.isCambio());
+    return (calculaDias(locacao))
+    * regraSeguro.calcular(locacao);
   }
 
   public double calculaTotal(Locacao locacao) {
-    return calculaDiaria(locacao) + calculaSeguro(locacao) * calculaDesconto(locacao);
+    return (calculaDiaria(locacao) + calculaSeguro(locacao)) * calculaDesconto(locacao);
   }
 
   public  double calculaDias(Locacao locacao) {

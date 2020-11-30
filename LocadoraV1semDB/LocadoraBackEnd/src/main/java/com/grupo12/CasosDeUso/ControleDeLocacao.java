@@ -38,10 +38,6 @@ public class ControleDeLocacao {
     this.servicos = servicos;
   }
 
-  public boolean podeVender(String placa) {
-    return servicos.recupera(placa);
-  }
-
   public Collection<Carro> frotaDeCarros() {
     return frotaDB.todos();
   }
@@ -86,11 +82,8 @@ public class ControleDeLocacao {
       if (!(validaDataPeriodo(filtro.getInicioLocacao(),filtro.getFimLocacao())
       && validaDataAtual(filtro.getInicioLocacao()))) {
         return true;
-      } else {
-        return false;
       }
     } catch (ParseException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
 	return false;
@@ -106,17 +99,19 @@ public class ControleDeLocacao {
   }
 
   public List<CarroCustoDTO> ListaCarrosDisponiveis(FiltroDTO filtro) {
-    
     if (validaData(filtro)) {
       return new ArrayList<>();
     }
-
+    
     List<Carro> disponiveis = FiltroDisponiveis(filtro);
+
     List<CarroCustoDTO> informacoes = new ArrayList<>(disponiveis.size());
     disponiveis.forEach(c->{
+
       Locacao l = new Locacao(c.getPlaca(), c.getMarca(), c.getMarca(), 
       c.isArcondicionado(), c.isDirecao(), c.isCambioautomatico(),
       filtro.getInicioLocacao(), filtro.getFimLocacao(), false);
+
       informacoes.add(new CarroCustoDTO(filtro.getInicioLocacao(),
                                         filtro.getFimLocacao(),
                                         c.getPlaca(),
